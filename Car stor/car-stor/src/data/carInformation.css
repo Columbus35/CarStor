@@ -1,0 +1,279 @@
+*{
+  font-size: 12px;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.layout {
+  position: absolute;  
+  width: 18%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  grid-template-areas: 
+    "content1 content1"
+    "content1 content1"
+    "content5 content6"
+    "content4 content8"
+    "content11 content10"
+    "content9 content2"
+    "content3 content3"
+    "content3 content3"
+    "content7 content7"
+    "content12 content12";
+  margin: 0 auto;
+  transform: translateZ(10px);
+  top: 10%;
+  left: 1%;
+}
+
+.icon-title-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.icon-title-container:hover .icon{
+    opacity: 0;
+}
+
+.title {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 5px; 
+  left: 0;
+  transform: translate(0%, -50%);
+  font-size: 12px;
+  text-align: center;
+  opacity: 0%;
+  transition: 1s;
+}
+
+.icon-title-container:hover .title{
+    opacity: 100%;
+}
+.content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 8px;
+    font-size: 12px;
+    top: 22px;
+}
+
+.content1{
+    grid-area: content1;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content2{
+    grid-area: content2;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content2:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content3{
+    grid-area: content3;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content3:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content4{
+    grid-area: content4;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content4:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content5{
+    grid-area: content5;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content5:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content6{
+    grid-area: content6;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content6:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content7{
+    grid-area: content7;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+
+.content7 .content{
+    color: red;
+}
+.content7:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content8{
+    grid-area: content8;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content8:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content9{
+    grid-area: content9;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content9:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content10{
+    grid-area: content10;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content10:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+.content11{
+    grid-area: content11;
+    border-radius: 10px;
+    border: solid 1px rgb(70, 72, 72);
+    background-color: transparent;
+    opacity: 70%;
+    color: rgb(143, 143, 143);
+    transition: 0.5s; 
+}
+.content11:hover{
+    opacity: 1;
+    color: black;
+    background-color:rgb(124, 128, 128);
+}
+
+.content12{
+    grid-area: content12;
+    filter: drop-shadow(0px 0px 5px #555);
+    gap: 20px;
+    opacity: 60%;
+}
+
+.left{
+    opacity: 60%;
+    transition: 0.5s;
+}
+
+.left:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.right{
+    opacity: 60%;
+    transition: 0.5s;
+}
+
+.right:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color:transparent;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+

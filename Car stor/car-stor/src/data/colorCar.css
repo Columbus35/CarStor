@@ -1,0 +1,103 @@
+.carPres {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 900px;
+  height: 600px;
+  margin-left: 200px;
+}
+
+.background{
+    left: 2%;
+    top: -110px;
+    position: absolute;
+    display: flex;
+    max-width: 1000px;
+}
+
+.carImg{
+    position: absolute;
+    left: 200px;
+    width: 70%;
+    height: auto;
+    left: 2%;
+    top: -18%;
+} 
+
+.iconCar{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    left: 90%;
+
+}
+
+.miniCar{
+    position: relative;
+    width: 70%;
+    height: auto;
+    left: 160%;
+    top: -120px;
+
+}
+
+.lumini{
+    position: relative;
+    top: -10px;
+    left: -90%;
+    opacity: 60%;
+    
+}
+
+.next {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  color: white;
+  z-index: 30;
+  opacity: 30%;
+  cursor: pointer;
+  left: 50%;
+  top: -100px;
+}
+
+.next:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+  opacity: 80%;
+}
+.carIndicators {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 1rem;
+  top: 150px;
+  background-color: transparent;
+}
+.carIndicators img {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  background-color: transparent;
+  box-shadow: 0px 0px 7px #b0afaf;
+  border: none;
+}
+
+.carIndicator {
+  height: 0.4rem;
+  width: 0.4rem;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  transform: scale(1);
+}
+
+.carIndicator-inactive {
+  transform: scale(0.8);
+  background-color: transparent;
+}
