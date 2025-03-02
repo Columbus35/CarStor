@@ -20,7 +20,7 @@ export const Carousel = () => {
         const response = await fetch("http://localhost:5050/Cover"); 
         const jsonData = await response.json();
         const formattedSlides = jsonData.map((item) => ({
-          src: `http://localhost:5050/imagini/${item.imagine}`,
+          src: `http://localhost:5050/images/${item.image}`,
           alt: item.alt || "Slide Image",
           title: item.title || "Slide Title",
           content: item.content || "Slide Content",
@@ -28,7 +28,7 @@ export const Carousel = () => {
 
         setSlides(formattedSlides);
       } catch (error) {
-        console.error("Datele nu au putut fi citite:", error);
+        console.error("Data could not be retrieved:", error);
       }
     };
 

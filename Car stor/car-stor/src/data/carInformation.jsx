@@ -30,22 +30,22 @@ const MainPage = () => {
         const formattedSlides = jsonData.map((item) => ({
           id: item.id || "id",
           logo: `http://localhost:5050/imagini/${item.logo}`,
-          conbustibil: item.conbustibil || "Conbustibil",
-          consum: item.consum || "Consum",
-          fabricatie: item.fabricatie || "Fabricatie",
-          marca: item.marca || "Marca",
+          fuel: item.conbustibil || "Fuel",
+          consumption: item.consum || "Consumption",
+          manufactureYear: item.fabricatie || "Manufacture Year",
+          brand: item.marca || "Brand",
           model: item.model || "Model",
-          pret: item.pret || "Pret",
-          putere: item.putere || "Putere",
-          transmisie: item.transmisie || "Transmisie",
-          tractiune: item.tractiune || "Tractiune",
-          usi: item.usi || "Usi",
+          price: item.pret || "Price",
+          power: item.putere || "Power",
+          transmission: item.transmisie || "Transmission",
+          drivetrain: item.tractiune || "Drivetrain",
+          doors: item.usi || "Doors",
         }));
 
-        formattedSlides.sort((a, b) => a.marca.localeCompare(b.marca));
+        formattedSlides.sort((a, b) => a.brand.localeCompare(b.brand));
         setSlides(formattedSlides);
       } catch (error) {
-        console.error("Fehler beim Abrufen der Daten:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -57,53 +57,53 @@ const MainPage = () => {
       <section>
         <div className="shop">
           <div className="autoColor">
-        {slides.length > 0 && (
-          <div className="color-section">
-            <Color id={slides[currentSlide].id} />
+            {slides.length > 0 && (
+              <div className="color-section">
+                <Color id={slides[currentSlide].id} />
+              </div>
+            )}
           </div>
-        )}
-           </div>
         </div>
         <div className="layout">
           {slides.length > 0 && (
             <React.Fragment>
               <div className="content1 centered">
-                <img src={slides[currentSlide].logo}/>
+                <img src={slides[currentSlide].logo} alt="Car Logo" />
               </div>
               <div className="content2 centered">
                 <div className="icon-title-container">
-                  <p className="title">Conbustibil:</p>
+                  <p className="title">Fuel:</p>
                   <span className="icon">
                     <MdWaterDrop />
                   </span>
-                  <p className="content">{slides[currentSlide].conbustibil}</p>
+                  <p className="content">{slides[currentSlide].fuel}</p>
                 </div>
               </div>
               <div className="content3 centered">
                 <div className="icon-title-container">
-                  <p className="title">Consum:</p>
+                  <p className="title">Consumption:</p>
                   <span className="icon">
                     <FaGasPump />
                   </span>
-                  <p className="content">{slides[currentSlide].consum}</p>
+                  <p className="content">{slides[currentSlide].consumption}</p>
                 </div>
               </div>
               <div className="content4 centered">
                 <div className="icon-title-container">
-                  <p className="title">Fabricatie:</p>
+                  <p className="title">Manufacture Year:</p>
                   <span className="icon">
                     <BsCalendar2Date />
                   </span>
-                  <p className="content">{slides[currentSlide].fabricatie}</p>
+                  <p className="content">{slides[currentSlide].manufactureYear}</p>
                 </div>
               </div>
               <div className="content5 centered">
                 <div className="icon-title-container">
-                  <p className="title">Marca:</p>
+                  <p className="title">Brand:</p>
                   <span className="icon">
                     <IoCarSport />
                   </span>
-                  <p className="content">{slides[currentSlide].marca}</p>
+                  <p className="content">{slides[currentSlide].brand}</p>
                 </div>
               </div>
               <div className="content6 centered">
@@ -117,53 +117,61 @@ const MainPage = () => {
               </div>
               <div className="content7 centered">
                 <div className="icon-title-container">
-                  <p className="title">Pret:</p>
+                  <p className="title">Price:</p>
                   <span className="icon">
                     <GiMoneyStack />
                   </span>
-                  <p className="content">{slides[currentSlide].pret}€</p>
+                  <p className="content">{slides[currentSlide].price}€</p>
                 </div>
               </div>
               <div className="content8 centered">
                 <div className="icon-title-container">
-                  <p className="title">Putere:</p>
+                  <p className="title">Power:</p>
                   <span className="icon">
                     <SiGoogleearthengine />
                   </span>
-                  <p className="content">{slides[currentSlide].putere}</p>
+                  <p className="content">{slides[currentSlide].power}</p>
                 </div>
               </div>
               <div className="content9 centered">
                 <div className="icon-title-container">
-                  <p className="title">Transmisie:</p>
+                  <p className="title">Transmission:</p>
                   <span className="icon">
                     <GiGearStickPattern />
                   </span>
-                  <p className="content">{slides[currentSlide].transmisie}</p>
+                  <p className="content">{slides[currentSlide].transmission}</p>
                 </div>
               </div>
               <div className="content10 centered">
                 <div className="icon-title-container">
-                  <p className="title">Tractiune:</p>
+                  <p className="title">Drivetrain:</p>
                   <span className="icon">
                     <GiAbstract021 />
                   </span>
-                  <p className="content">{slides[currentSlide].tractiune}</p>
+                  <p className="content">{slides[currentSlide].drivetrain}</p>
                 </div>
               </div>
               <div className="content11 centered">
                 <div className="icon-title-container">
-                  <p className="title">Usi:</p>
+                  <p className="title">Doors:</p>
                   <span className="icon">
                     <GiCarDoor />
                   </span>
-                  <p className="content">{slides[currentSlide].usi}</p>
+                  <p className="content">{slides[currentSlide].doors}</p>
                 </div>
               </div>
               <div className="content12 centered">
-          <button onClick={prevSlide}><span className="left"><RiArrowLeftSLine size="20"/></span></button>
-          <button onClick={nextSlide}><span className="right"><RiArrowRightSLine size="20"/></span></button>
-        </div>
+                <button onClick={prevSlide}>
+                  <span className="left">
+                    <RiArrowLeftSLine size="20" />
+                  </span>
+                </button>
+                <button onClick={nextSlide}>
+                  <span className="right">
+                    <RiArrowRightSLine size="20" />
+                  </span>
+                </button>
+              </div>
             </React.Fragment>
           )}
         </div>

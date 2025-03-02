@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import fire from "./init.js";
-import { getFirestore, collection, getDocs, doc, addDoc} from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, addDoc } from "firebase/firestore";
 
 const port = 5050;
 const app = express();
@@ -14,15 +14,15 @@ app.use(fileUpload());
 app.use(express.static("files"));
 const __filename = fileURLToPath(import.meta.url);  
 const __dirname = path.dirname(__filename);
-const imaginiPath = path.join(__dirname, 'imagini');
-app.use('/imagini', express.static(imaginiPath));
+const imagesPath = path.join(__dirname, 'images');
+app.use('/images', express.static(imagesPath));
 app.use(express.json());
 
 const db = getFirestore(fire);
 
 app.get("/Cover", async (req, res) => {
-  const listaCover = await getDocs(collection(db, "Cover"));
-  let newCover = await listaCover.docs.map((item) => {
+  const coverList = await getDocs(collection(db, "Cover"));
+  let newCover = await coverList.docs.map((item) => {
     let cover = item.data();
     cover.id = item.id; 
     return cover;
@@ -31,132 +31,131 @@ app.get("/Cover", async (req, res) => {
 });
 
 app.get("/Color", async (req, res) => {
-  const listaCuloare = await getDocs(collection(db, "Culoare"));
-  let newCuloare = await listaCuloare.docs.map((item) => {
-    let culoare = item.data();
-    culoare.id = item.id; 
-    return culoare;
+  const colorList = await getDocs(collection(db, "Color"));
+  let newColor = await colorList.docs.map((item) => {
+    let color = item.data();
+    color.id = item.id; 
+    return color;
   });
-  res.status(200).send(JSON.stringify(newCuloare));
+  res.status(200).send(JSON.stringify(newColor));
 });
 
-app.get("/Marca", async (req, res) => {
-  const listaMarca = await getDocs(collection(db, "Marca"));
-  let newMarca = await listaMarca.docs.map((item) => {
-    let marca = item.data();
-    marca.id = item.id; 
-    return marca;
+app.get("/Brand", async (req, res) => {
+  const brandList = await getDocs(collection(db, "Brand"));
+  let newBrand = await brandList.docs.map((item) => {
+    let brand = item.data();
+    brand.id = item.id; 
+    return brand;
   });
-  res.status(200).send(JSON.stringify(newMarca));
-})
+  res.status(200).send(JSON.stringify(newBrand));
+});
 
 app.get("/General", async (req, res) => {
-  const listaGenerala = await getDocs(collection(db, "General"));
-  let newGeneral = await listaGenerala.docs.map((item) => {
+  const generalList = await getDocs(collection(db, "General"));
+  let newGeneral = await generalList.docs.map((item) => {
     let general = item.data();
     general.id = item.id; 
     return general;
   });
   res.status(200).send(JSON.stringify(newGeneral));
-})
+});
 
 app.get("/Model", async (req, res) => {
-    const listaAuto = await getDocs(collection(db, "ModelAuto"));
-    const listaMarca = await getDocs(collection(db, "Marca"));
+  const carList = await getDocs(collection(db, "ModelAuto"));
+  const brandList = await getDocs(collection(db, "Brand"));
 
-    let newMarca = listaMarca.docs.map((item) => {
-      let marca = item.data();
-      marca.id = item.id;
-      return marca;
+  let newBrand = brandList.docs.map((item) => {
+    let brand = item.data();
+    brand.id = item.id;
+    return brand;
+  });
+
+  let newCar = carList.docs.map((item) => {
+    let car = item.data();
+    car.id = item.id;
+
+    let matchedBrand = newBrand.find((brand) => {
+      return String(brand.id).trim() === String(car.brand).trim();
     });
 
-    let newAuto = listaAuto.docs.map((item) => {
-      let auto = item.data();
-      auto.id = item.id;
+    if (matchedBrand) {
+      car.brand = matchedBrand.brand;
+      car.logo = matchedBrand.logo;
+    }
 
-      let matchedMarca = newMarca.find((marca) => {
-        return String(marca.id).trim() === String(auto.marca).trim();
-      });
+    return car;
+  });
+  res.status(200).send(JSON.stringify(newCar));
+});
 
-      if (matchedMarca) {
-        auto.marca = matchedMarca.marca;
-        auto.logo = matchedMarca.logo;
-      }
-
-      return auto;
-    });
-    res.status(200).send(JSON.stringify(newAuto));
-
-  });;
-
-app.post("/adaugMarca", async (req, res) => {
-  const { marca, logo } = req.body;
+app.post("/addBrand", async (req, res) => {
+  const { brand, logo } = req.body;
 
   try {
-    const newMarca = {
-      marca: marca,
+    const newBrand = {
+      brand: brand,
       logo: logo,
     };
 
-    const docRef = await addDoc(collection(db, "Marca"), newMarca);
+    const docRef = await addDoc(collection(db, "Marca"), newBrand);
 
-    res.status(201).send({ message: "Datele au fost adaugate cu succes!", id: docRef.id });
+    res.status(201).send({ message: "Data has been successfully added!", id: docRef.id });
   } catch (error) {
-    console.error("A aparut o eroare la adaugare:", error);
-    res.status(500).send({ message: "A aparut o eroare la adaugare." });
+    console.error("An error occurred while adding:", error);
+    res.status(500).send({ message: "An error occurred while adding." });
   }
 });
 
-app.post("/adaugModel", async (req, res) => {
-  const { marca, usi, transmisie, tractiune, putere, pret, fabricatie, consum, conbustibil,
+app.post("/addModel", async (req, res) => {
+  const { brand, doors, transmission, traction, power, price, manufacture, consumption, fuel,
     model
-   } = req.body;
+  } = req.body;
 
   try {
     const newModel = {
-      marca: marca,
-      logo:"",
+      brand: brand,
+      logo: "",
       model: model,
-      conbustibil: conbustibil,
-      consum: consum,
-      fabricatie: fabricatie,
-      pret: pret,
-      putere: putere,
-      tractiune: tractiune,
-      transmisie: transmisie,
-      usi: usi,
+      fuel: fuel,
+      consumption: consumption,
+      manufacture: manufacture,
+      price: price,
+      power: power,
+      traction: traction,
+      transmission: transmission,
+      doors: doors,
     };
 
     const docRef = await addDoc(collection(db, "ModelAuto"), newModel);
 
-    res.status(201).send({ message: "Datele au fost adaugate cu succes!", id: docRef.id });
+    res.status(201).send({ message: "Data has been successfully added!", id: docRef.id });
   } catch (error) {
-    console.error("A aparut o eroare la adaugare:", error);
-    res.status(500).send({ message: "A aparut o eroare la adaugare." });
+    console.error("An error occurred while adding:", error);
+    res.status(500).send({ message: "An error occurred while adding." });
   }
 });
 
-app.post("/adaugCuloare", async (req, res) => {
-  const { model, culoare, fata, lateral, spate } = req.body;
+app.post("/addColor", async (req, res) => {
+  const { model, color, front, side, back } = req.body;
 
   try {
-    const newCollor = {
+    const newColor = {
       model: model,
-      culoare: culoare,
-      fata: fata,
-      lateral: lateral,
-      spate: spate,
+      color: color,
+      front: front,
+      side: side,
+      back: back,
     };
 
-    const docRef = await addDoc(collection(db, "Culoare"), newCollor);
+    const docRef = await addDoc(collection(db, "Color"), newColor);
 
-    res.status(201).send({ message: "Datele au fost adaugate cu succes!", id: docRef.id });
+    res.status(201).send({ message: "Data has been successfully added!", id: docRef.id });
   } catch (error) {
-    console.error("A aparut o eroare la adaugare:", error);
-    res.status(500).send({ message: "A aparut o eroare la adaugare." });
+    console.error("An error occurred while adding:", error);
+    res.status(500).send({ message: "An error occurred while adding." });
   }
 });
 
 app.listen(port, () => {
-  console.log(`Serverul așteaptă comenzi pe portul ${port}`);
+  console.log(`The server is waiting for requests on port ${port}`);
 });

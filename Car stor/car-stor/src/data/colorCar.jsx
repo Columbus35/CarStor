@@ -17,9 +17,9 @@ const Color = ({ id }) => {
         const formattedSlides = filteredData.map((item) => ({
           color: `http://localhost:5050/imagini/${item.culoare}`,
           images: [
-            `http://localhost:5050/imagini/${item.fata}`,
-            `http://localhost:5050/imagini/${item.lateral}`,
-            `http://localhost:5050/imagini/${item.spate}`,
+            `http://localhost:5050/imagini/${item.front}`,
+            `http://localhost:5050/imagini/${item.side}`,
+            `http://localhost:5050/imagini/${item.rear}`,
           ],
         }));
 
@@ -27,7 +27,7 @@ const Color = ({ id }) => {
         setCurrentObject(0); 
         setCurrentImage(1); 
       } catch (error) {
-        console.error("Fehler beim Laden der Farb-Daten:", error);
+        console.error("Error loading color data:", error);
       }
     };
 
@@ -51,9 +51,9 @@ const Color = ({ id }) => {
         <img
           src={`http://localhost:5050/imagini/Garage.png`}
         />
-        <div className="lumini">
+        <div className="lights">
         <img
-          src={`http://localhost:5050/imagini/Lichter.png`}
+          src={`http://localhost:5050/imagini/Lights.png`}
         />
         </div>
       </div>

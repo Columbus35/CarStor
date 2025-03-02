@@ -12,27 +12,28 @@ const NavBar = () => {
         setActiveIndex(index);
     };
 
-const handleMouseMove = (e) => {
+    const handleMouseMove = (e) => {
         const x = e.pageX - e.target.offsetLeft;
         const y = e.pageY - e.target.offsetTop;
         e.target.style.setProperty('--x', x + 'px');
         e.target.style.setProperty('--y', y + 'px');
     };
+
     return (
         <div className='addBodyNav'>
-        <nav className="addnavigation">
-            <ul>
-                {[
-                    { name: 'Adauga Marca ', icon: <PiDribbbleLogoFill size="20"/>, path: '/add-masini/marca', color:" rgb(54, 134, 227)"},
-                    { name: 'Adauga Modelul ', icon: <IoLogoModelS size="20"/>, path: '/add-masini/model', color:" rgb(58, 223, 168)"},
-                    { name: 'Adauga Culoarea ', icon: <GiPaintRoller size="20"/>, path: '/add-masini/culoare', color:" rgb(240, 252, 16)"},
-                ].map((item, index) => (
-                    <li
-                        key={index}
-                        className={`list ${activeIndex === index ? 'active' : ''}`}
-                        onClick={() => handleActiveLink(index)}
-                    >   
-                        <Link 
+            <nav className="addNavigation">
+                <ul>
+                    {[
+                        { name: 'Add Brand', icon: <PiDribbbleLogoFill size="20"/>, path: '/add-cars/brand', color: "rgb(54, 134, 227)" },
+                        { name: 'Add Model', icon: <IoLogoModelS size="20"/>, path: '/add-cars/model', color: "rgb(58, 223, 168)" },
+                        { name: 'Add Color', icon: <GiPaintRoller size="20"/>, path: '/add-cars/color', color: "rgb(240, 252, 16)" },
+                    ].map((item, index) => (
+                        <li
+                            key={index}
+                            className={`list ${activeIndex === index ? 'active' : ''}`}
+                            onClick={() => handleActiveLink(index)}
+                        >   
+                            <Link 
                                 to={item.path} 
                                 onMouseMove={handleMouseMove}
                                 style={{ '--clr': item.color }}
@@ -41,12 +42,11 @@ const handleMouseMove = (e) => {
                                     {item.name}
                                 </span>
                                 <span className="addNavText">{item.icon}</span>
-                        </Link>
-                    </li>
-                ))}
-                
-            </ul>
-        </nav>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
         </div>
     );
 };
